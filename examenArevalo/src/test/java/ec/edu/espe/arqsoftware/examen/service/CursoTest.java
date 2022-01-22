@@ -52,6 +52,24 @@ public class CursoTest {
         
     }
     
- 
+ @Test
+    public void GivenAreaAndFechaInicioReturnListCursos() {
+        when(this.cursoRepository.findByAreaAndFechaInicio("Computacion", new Date())).thenReturn(cursoList);
+        try {
+            Assertions.assertEquals(cursoList, this.service.getByArea("Computacion"));
+        } catch (Exception e) {
+            Logger.getLogger(CursoTest.class.getName()).log(Level.SEVERE, null, e);
+        }
+    }
+
+    @Test
+    public void GivenNombreAndFechaInicioReturnCursos() {
+        when(this.cursoRepository.findByNombreAndFechaInicio("Programacion", new Date())).thenReturn(cursoList);
+        try {
+            Assertions.assertEquals(cursoList, this.service.getByNombre("Programacion"));
+        } catch (Exception e) {
+            Logger.getLogger(CursoTest.class.getName()).log(Level.SEVERE, null, e);
+        }
+    }
 
 }
